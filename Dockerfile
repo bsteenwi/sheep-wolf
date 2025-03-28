@@ -1,7 +1,7 @@
 FROM python:3.11-slim
 
 WORKDIR /app
-COPY ../wolf_sheep /app
+COPY . /app
 
 RUN pip install --no-cache-dir mesa solara networkx matplotlib altair
 
