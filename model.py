@@ -30,10 +30,10 @@ class WolfSheep(Model):
 
     def __init__(
         self,
-        width=10,
-        height=10,
-        initial_sheep=1,
-        initial_wolves=1,
+        width=50,
+        height=50,
+        initial_sheep=5,
+        initial_wolves=3,
         sheep_reproduce=0.04,
         wolf_reproduce=0.05,
         wolf_gain_from_food=20,

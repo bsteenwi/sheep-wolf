@@ -136,36 +136,36 @@ def get_user_input(prompt):
             print("Please enter a valid positive integer.")
 
 # Get user inputs
-grid_size = get_user_input("Enter grid size: ")
-num_sheep = get_user_input("Enter number of sheep: ")
-num_wolves = get_user_input("Enter number of wolves: ")
-steps = get_user_input("Enter number of steps: ")
-
-print(f"Starting simulation with Grid Size: {grid_size}, Sheep: {num_sheep}, Wolves: {num_wolves}, Steps: {steps}\n")
-
+# grid_size = get_user_input("Enter grid size: ")
+# num_sheep = get_user_input("Enter number of sheep: ")
+# num_wolves = get_user_input("Enter number of wolves: ")
+# steps = get_user_input("Enter number of steps: ")
+#
+# print(f"Starting simulation with Grid Size: {grid_size}, Sheep: {num_sheep}, Wolves: {num_wolves}, Steps: {steps}\n")
+#
 simulator = ABMSimulator()
-model = WolfSheep(simulator=simulator, grass=True, width=grid_size, height=grid_size, initial_sheep=num_sheep, initial_wolves=num_wolves)
-# Placeholder for simulation loop
-for step in range(steps):
-    # Simulate a step (Replace with actual model simulation logic)
-    model.step()
-    clear_console()
-    print_console_grid(model)
-    # Print statistics for the current step
-    # Count the number of wolves, sheep, and fully grown grass patches
-    num_wolves = len(model.agents_by_type[Wolf])
-    num_sheep = len(model.agents_by_type[Sheep])
-    num_fully_grown_grass = sum(
-        1 for agent in model.agents_by_type[GrassPatch] if agent.fully_grown
-    )
-    print(f"Step {step}: Sheep={num_sheep}, Wolves={num_wolves}, Fully Grown Grass={num_fully_grown_grass}")
-    time.sleep(0.2)
+model = WolfSheep(simulator=simulator, grass=True)
+# # Placeholder for simulation loop
+# for step in range(steps):
+#     # Simulate a step (Replace with actual model simulation logic)
+#     model.step()
+#     clear_console()
+#     print_console_grid(model)
+#     # Print statistics for the current step
+#     # Count the number of wolves, sheep, and fully grown grass patches
+#     num_wolves = len(model.agents_by_type[Wolf])
+#     num_sheep = len(model.agents_by_type[Sheep])
+#     num_fully_grown_grass = sum(
+#         1 for agent in model.agents_by_type[GrassPatch] if agent.fully_grown
+#     )
+#     print(f"Step {step}: Sheep={num_sheep}, Wolves={num_wolves}, Fully Grown Grass={num_fully_grown_grass}")
+#     time.sleep(0.2)
 
-# page = SolaraViz(
-#     model,
-#     components=[space_component, lineplot_component],
-#     model_params=model_params,
-#     name="Wolf Sheep",
-#     simulator=simulator,
-# )
-# page  # noqa
+page = SolaraViz(
+    model,
+    components=[space_component, lineplot_component],
+    model_params=model_params,
+    name="Wolf Sheep",
+    simulator=simulator,
+)
+page  # noqa
