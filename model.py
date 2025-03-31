@@ -30,15 +30,15 @@ class WolfSheep(Model):
 
     def __init__(
         self,
-        width=20,
-        height=20,
-        initial_sheep=100,
-        initial_wolves=50,
+        width=10,
+        height=10,
+        initial_sheep=1,
+        initial_wolves=1,
         sheep_reproduce=0.04,
         wolf_reproduce=0.05,
         wolf_gain_from_food=20,
         grass=True,
-        grass_regrowth_time=30,
+        grass_regrowth_time=3,
         sheep_gain_from_food=4,
         seed=None,
         simulator: ABMSimulator = None,
@@ -127,6 +127,14 @@ class WolfSheep(Model):
         # First activate all sheep, then all wolves, both in random order
         self.agents_by_type[Sheep].shuffle_do("step")
         self.agents_by_type[Wolf].shuffle_do("step")
+
+        # Manually check if any grass patch should regrow
+        for grass in self.agents_by_type[GrassPatch]:
+            if not grass.fully_grown:
+                grass.grass_regrowth_time -= 1
+                if grass.grass_regrowth_time <= 0:
+                    grass.fully_grown = True
+                    grass.grass_regrowth_time = 10
 
         # Collect data
         self.datacollector.collect(self)
